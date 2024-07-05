@@ -1,13 +1,18 @@
-import java.util.ArrayList;
-import java.util.concurrent.Flow;
+package Screens;
 
 import javax.swing.*;
+import javax.swing.border.Border;
+
 import java.awt.*;
+import java.awt.event.*;
+
+import Events.LoginScreenEvents;
+
+// TODO: implementar o sistema de bloqueio do botao de logar enquanto os campos de login e senha estiverem mutualmente preenchidos
 
 public class LoginScreen extends JFrame{
 
     private Container contentPane;
-    //private JPanel contentPaneDiv;
     private JPanel northPanel;
     private JPanel centralPanelDiv;
     private JPanel centralPanelGrid;
@@ -20,11 +25,12 @@ public class LoginScreen extends JFrame{
     private JTextField login_field;
 
     private JLabel pass_label;
-    private JTextField pass_field;
+    private JPasswordField pass_field;
 
     private JButton confirm_btn;
     private JButton createAccount_btn;
-    
+
+    private LoginScreenEvents eventManager;
     
     public LoginScreen(){
         super("Gerenciador Financeiro");
@@ -46,27 +52,76 @@ public class LoginScreen extends JFrame{
     }
 
     private void initializeComponents() {
+        Font title_font = new Font("Montserrat", Font.BOLD, 18);
+        Font notTitle_font = new Font("Montserrat", Font.PLAIN, 15);
+        Dimension btn_dimention = new Dimension(200, 50);
+        Dimension textField_dimension = new Dimension(200,20);
+        Border border_btn = BorderFactory.createLineBorder(Color.WHITE, 1, true);
+
         title_label = new JLabel("LOGIN");
-        title_label.setFont(new Font("Montserrat", Font.BOLD, 18));
+        title_label.setFont(title_font);
+
         login_label = new JLabel("Usuário: ");
-        login_label.setFont(new Font("Montserrat", Font.PLAIN, 14));
-        login_field = new JTextField(10);
-        
+        login_label.setFont(notTitle_font);
+
+        login_field = new JTextField();
+        login_field.setPreferredSize(textField_dimension);
+        login_field.setFont(notTitle_font);
+
         pass_label = new JLabel("Senha: ");
-        pass_label.setFont(new Font("Montserrat", Font.PLAIN, 14));
-        pass_field = new JTextField(10);
+        pass_label.setFont(notTitle_font);
+
+        pass_field = new JPasswordField();
+        pass_field.setPreferredSize(textField_dimension);
+
         confirm_btn = new JButton("Entrar");
+        confirm_btn.setPreferredSize(btn_dimention);
+        confirm_btn.setOpaque(true);
+        confirm_btn.setFont(notTitle_font);
+        confirm_btn.setBorder(border_btn);
+        confirm_btn.setBackground(Color.BLUE);
+        confirm_btn.setForeground(Color.WHITE);
+        confirm_btn.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                confirm_btn.setBackground(Color.LIGHT_GRAY);
+            }
+            public void mouseReleased(MouseEvent e) {
+                confirm_btn.setBackground(Color.BLUE);
+            }
+        });
+
         createAccount_btn = new JButton("Criar conta");
+        createAccount_btn.setPreferredSize(btn_dimention);
+        createAccount_btn.setOpaque(true);
+        createAccount_btn.setFont(notTitle_font);
+        createAccount_btn.setBorder(border_btn);
+        createAccount_btn.setBackground(Color.BLUE);
+        createAccount_btn.setForeground(Color.WHITE);
+        createAccount_btn.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent e) {
+                createAccount_btn.setBackground(Color.LIGHT_GRAY);
+            }
+            public void mouseReleased(MouseEvent e) {
+                createAccount_btn.setBackground(Color.BLUE);
+            }
+        });
+
+        eventManager = new LoginScreenEvents(login_field, pass_field, confirm_btn, createAccount_btn);
+
+        confirm_btn.addActionListener(eventManager);
+
     }
 
     private void prepareScreen() {
+        Color backgroundColor = new Color(237, 151, 71);
+
         contentPane = this.getContentPane();
         contentPane.setLayout(new BorderLayout());
         //contentPaneDiv = new JPanel(new BorderLayout());
         northPanel = new JPanel(new FlowLayout());
         centralPanelGrid = new JPanel(new GridLayout(2, 2));
         centralPanelDiv = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        southPanelGrid = new JPanel(new GridLayout(1, 2));
+        southPanelGrid = new JPanel(new GridLayout(1, 2, 2, 0));
         southPanelDiv = new JPanel(new FlowLayout(FlowLayout.CENTER));
         
         northPanel.add(title_label);
@@ -82,6 +137,12 @@ public class LoginScreen extends JFrame{
         contentPane.add(northPanel, BorderLayout.NORTH);
         contentPane.add(centralPanelDiv, BorderLayout.CENTER);
         contentPane.add(southPanelDiv, BorderLayout.SOUTH);
+
+        northPanel.setBackground(backgroundColor);
+        centralPanelDiv.setBackground(backgroundColor);
+        centralPanelGrid.setBackground(backgroundColor);
+        southPanelDiv.setBackground(backgroundColor);
+        southPanelGrid.setBackground(backgroundColor);
     }
 
 }
