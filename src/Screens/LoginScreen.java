@@ -61,9 +61,11 @@ public class LoginScreen extends JFrame{
 
         title_label = new JLabel("LOGIN");
         title_label.setFont(title_font);
+        title_label.setForeground(Color.WHITE);
 
         login_label = new JLabel("Usuário: ");
         login_label.setFont(notTitle_font);
+        login_label.setForeground(Color.WHITE);
 
         login_field = new JTextField();
         login_field.setPreferredSize(textField_dimension);
@@ -71,6 +73,7 @@ public class LoginScreen extends JFrame{
 
         pass_label = new JLabel("Senha: ");
         pass_label.setFont(notTitle_font);
+        pass_label.setForeground(Color.WHITE);
 
         pass_field = new JPasswordField();
         pass_field.setPreferredSize(textField_dimension);
@@ -83,6 +86,12 @@ public class LoginScreen extends JFrame{
         confirm_btn.setBackground(Color.BLUE);
         confirm_btn.setForeground(Color.WHITE);
         confirm_btn.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                confirm_btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            public void mouseExited(MouseEvent e) {
+                confirm_btn.setCursor(Cursor.getDefaultCursor());
+            }
             public void mousePressed(MouseEvent e) {
                 confirm_btn.setBackground(Color.LIGHT_GRAY);
             }
@@ -99,6 +108,12 @@ public class LoginScreen extends JFrame{
         createAccount_btn.setBackground(Color.BLUE);
         createAccount_btn.setForeground(Color.WHITE);
         createAccount_btn.addMouseListener(new MouseAdapter() {
+            public void mouseEntered(MouseEvent e) {
+                createAccount_btn.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+            public void mouseExited(MouseEvent e) {
+                createAccount_btn.setCursor(Cursor.getDefaultCursor());
+            }
             public void mousePressed(MouseEvent e) {
                 createAccount_btn.setBackground(Color.LIGHT_GRAY);
             }
@@ -107,9 +122,10 @@ public class LoginScreen extends JFrame{
             }
         });
 
-        eventManager = new LoginScreenEvents(login_field, pass_field, confirm_btn, createAccount_btn);
+        eventManager = new LoginScreenEvents(this ,login_field, pass_field, confirm_btn, createAccount_btn);
 
         confirm_btn.addActionListener(eventManager);
+        createAccount_btn.addActionListener(eventManager);
 
     }
 
