@@ -9,7 +9,6 @@ import java.awt.event.*;
 
 import Events.LoginScreenEvents;
 
-// TODO: implementar o sistema de bloqueio do botao de logar enquanto os campos de login e senha estiverem mutualmente preenchidos
 
 public class LoginScreen extends JFrame{
 
