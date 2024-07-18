@@ -74,7 +74,7 @@ public class LoginScreen extends JFrame{
         pass_field.setPreferredSize(ComponentCaracteristics.getTextfieldDimension());
 
         confirm_btn = new JButton("Entrar");
-        confirm_btn.setPreferredSize(ComponentCaracteristics.getBtnDimention());
+        confirm_btn.setPreferredSize(ComponentCaracteristics.getLoginBtnDimention());
         confirm_btn.setOpaque(true);
         confirm_btn.setFont(ComponentCaracteristics.getNottitleFont());
         confirm_btn.setBorder(ComponentCaracteristics.getBorderBtn());
@@ -96,7 +96,7 @@ public class LoginScreen extends JFrame{
         });
 
         createAccount_btn = new JButton("Criar conta");
-        createAccount_btn.setPreferredSize(ComponentCaracteristics.getBtnDimention());
+        createAccount_btn.setPreferredSize(ComponentCaracteristics.getLoginBtnDimention());
         createAccount_btn.setOpaque(true);
         createAccount_btn.setFont(ComponentCaracteristics.getNottitleFont());
         createAccount_btn.setBorder(ComponentCaracteristics.getBorderBtn());
