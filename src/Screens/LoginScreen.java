@@ -8,6 +8,7 @@ import java.awt.*;
 import java.awt.event.*;
 
 import Events.LoginScreenEvents;
+import utils.ComponentCaracteristics;
 
 
 public class LoginScreen extends JFrame{
@@ -52,36 +53,31 @@ public class LoginScreen extends JFrame{
     }
 
     private void initializeComponents() {
-        Font title_font = new Font("Montserrat", Font.BOLD, 18);
-        Font notTitle_font = new Font("Montserrat", Font.PLAIN, 15);
-        Dimension btn_dimention = new Dimension(200, 50);
-        Dimension textField_dimension = new Dimension(200,20);
-        Border border_btn = BorderFactory.createLineBorder(Color.WHITE, 1, true);
 
         title_label = new JLabel("LOGIN");
-        title_label.setFont(title_font);
+        title_label.setFont(ComponentCaracteristics.getTitleFont());
         title_label.setForeground(Color.WHITE);
 
         login_label = new JLabel("Usuário: ");
-        login_label.setFont(notTitle_font);
+        login_label.setFont(ComponentCaracteristics.getNottitleFont());
         login_label.setForeground(Color.WHITE);
 
         login_field = new JTextField();
-        login_field.setPreferredSize(textField_dimension);
-        login_field.setFont(notTitle_font);
+        login_field.setPreferredSize(ComponentCaracteristics.getTextfieldDimension());
+        login_field.setFont(ComponentCaracteristics.getNottitleFont());
 
         pass_label = new JLabel("Senha: ");
-        pass_label.setFont(notTitle_font);
+        pass_label.setFont(ComponentCaracteristics.getNottitleFont());
         pass_label.setForeground(Color.WHITE);
 
         pass_field = new JPasswordField();
-        pass_field.setPreferredSize(textField_dimension);
+        pass_field.setPreferredSize(ComponentCaracteristics.getTextfieldDimension());
 
         confirm_btn = new JButton("Entrar");
-        confirm_btn.setPreferredSize(btn_dimention);
+        confirm_btn.setPreferredSize(ComponentCaracteristics.getBtnDimention());
         confirm_btn.setOpaque(true);
-        confirm_btn.setFont(notTitle_font);
-        confirm_btn.setBorder(border_btn);
+        confirm_btn.setFont(ComponentCaracteristics.getNottitleFont());
+        confirm_btn.setBorder(ComponentCaracteristics.getBorderBtn());
         confirm_btn.setBackground(Color.BLUE);
         confirm_btn.setForeground(Color.WHITE);
         confirm_btn.addMouseListener(new MouseAdapter() {
@@ -100,10 +96,10 @@ public class LoginScreen extends JFrame{
         });
 
         createAccount_btn = new JButton("Criar conta");
-        createAccount_btn.setPreferredSize(btn_dimention);
+        createAccount_btn.setPreferredSize(ComponentCaracteristics.getBtnDimention());
         createAccount_btn.setOpaque(true);
-        createAccount_btn.setFont(notTitle_font);
-        createAccount_btn.setBorder(border_btn);
+        createAccount_btn.setFont(ComponentCaracteristics.getNottitleFont());
+        createAccount_btn.setBorder(ComponentCaracteristics.getBorderBtn());
         createAccount_btn.setBackground(Color.BLUE);
         createAccount_btn.setForeground(Color.WHITE);
         createAccount_btn.addMouseListener(new MouseAdapter() {
@@ -129,8 +125,6 @@ public class LoginScreen extends JFrame{
     }
 
     private void prepareScreen() {
-        Color backgroundColor = new Color(237, 151, 71);
-
         contentPane = this.getContentPane();
         contentPane.setLayout(new BorderLayout());
         //contentPaneDiv = new JPanel(new BorderLayout());
@@ -154,11 +148,11 @@ public class LoginScreen extends JFrame{
         contentPane.add(centralPanelDiv, BorderLayout.CENTER);
         contentPane.add(southPanelDiv, BorderLayout.SOUTH);
 
-        northPanel.setBackground(backgroundColor);
-        centralPanelDiv.setBackground(backgroundColor);
-        centralPanelGrid.setBackground(backgroundColor);
-        southPanelDiv.setBackground(backgroundColor);
-        southPanelGrid.setBackground(backgroundColor);
+        northPanel.setBackground(ComponentCaracteristics.getBackgroundcolor());
+        centralPanelDiv.setBackground(ComponentCaracteristics.getBackgroundcolor());
+        centralPanelGrid.setBackground(ComponentCaracteristics.getBackgroundcolor());
+        southPanelDiv.setBackground(ComponentCaracteristics.getBackgroundcolor());
+        southPanelGrid.setBackground(ComponentCaracteristics.getBackgroundcolor());
     }
 
 }
